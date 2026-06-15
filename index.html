@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="bg" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Премиум UI/UX Дизайн & Софтуерно Инженерство | Портфолио</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons for Modern Tech UI Look -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#090A0F',
+                        glassBg: 'rgba(17, 19, 31, 0.65)',
+                        glassBorder: 'rgba(255, 255, 255, 0.08)',
+                        neonPurple: '#a855f7',
+                        neonBlue: '#06b6d4',
+                    },
+                    boxShadow: {
+                        'neon-sm': '0 0 10px rgba(6, 182, 212, 0.15)',
+                        'neon-md': '0 0 25px rgba(168, 85, 247, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #090A0F;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(15, 17, 28, 0.7);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 30%, #a855f7 70%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .accent-gradient {
+            background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #090A0F; }
+        ::-webkit-scrollbar-thumb { background: #1f2235; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b3f5c; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-neonPurple/30 selection:text-white">
+
+    <!-- Background Decorative Elements -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 accent-gradient rounded-full blur-[160px] opacity-20 pointer-events-none"></div>
+    <div class="absolute top-[120vh] right-1/4 w-[400px] h-[400px] bg-neonBlue rounded-full blur-[180px] opacity-10 pointer-events-none"></div>
+    <div class="absolute top-[350vh] left-1/3 w-[500px] h-[500px] bg-neonPurple rounded-full blur-[200px] opacity-10 pointer-events-none"></div>
+
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-transparent backdrop-blur-md bg-darkBg/60" id="main-header">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 font-extrabold text-xl tracking-tight text-white group">
+                <span class="accent-gradient w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black text-darkBg shadow-neon-sm transform group-hover:rotate-12 transition-transform duration-300">
+                    UI
+                </span>
+                <span class="group-hover:text-neonBlue transition-colors duration-300">Dev.Studio</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+                <a href="#about" class="text-gray-400 hover:text-white transition-colors">За мен</a>
+                <a href="#services" class="text-gray-400 hover:text-white transition-colors">Услуги</a>
+                <a href="#figma-preview" class="text-gray-400 hover:text-white transition-colors">Прототипи</a>
+                <a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">Проекти</a>
+                <a href="#process" class="text-gray-400 hover:text-white transition-colors">Процес</a>
+            </nav>
+
+            <!-- Desktop CTA -->
+            <div class="hidden md:block">
+                <a href="#contact" class="px-5 py-2.5 rounded-xl border border-glassBorder glass-card text-sm font-semibold hover:border-neonBlue/50 text-white transition-all duration-300 hover:shadow-neon-sm">
+                    Заяви консултация
+                </a>
+            </div>
+
+            <!-- Mobile Burger Button -->
+            <button class="md:hidden text-white focus:outline-none" id="menu-btn" aria-label="Toggle Menu">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div class="hidden md:hidden fixed top-20 left-0 w-full h-[calc(100vh-5rem)] bg-darkBg/95 backdrop-blur-lg border-t border-glassBorder z-40 px-8 py-12" id="mobile-menu">
+            <nav class="flex flex-col gap-6 text-xl font-semibold">
+                <a href="#about" class="text-gray-300 hover:text-neonBlue transition-colors" onclick="toggleMenu()">За мен</a>
+                <a href="#services" class="text-gray-300 hover:text-neonBlue transition-colors" onclick="toggleMenu()">Услуги</a>
+                <a href="#figma-preview" class="text-gray-300 hover:text-neonBlue transition-colors" onclick="toggleMenu()">Прототипи</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-neonBlue transition-colors" onclick="toggleMenu()">Проекти</a>
+                <a href="#process" class="text-gray-300 hover:text-neonBlue transition-colors" onclick="toggleMenu()">Процес</a>
+                <a href="#contact" class="mt-4 inline-block text-center px-6 py-3.5 rounded-xl accent-gradient text-white text-base shadow-neon-md" onclick="toggleMenu()">
+                    Заяви консултация
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen pt-32 pb-20 flex items-center justify-center px-6">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Info Content -->
+            <div class="lg:col-span-7 flex flex-col justify-center text-left space-y-8">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card border border-glassBorder text-xs text-neonBlue font-semibold tracking-wider uppercase self-start animate-pulse">
+                    <span class="w-2 h-2 rounded-full bg-neonBlue shadow-neon-sm"></span> Наличен за нови проекти
+                </div>
+                
+                <!-- Main Heading -->
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight md:leading-none text-white">
+                    Модерни сайтове и <span class="text-gradient">UI/UX решения</span>, създадени за твоя бизнес
+                </h1>
+                
+                <!-- Subheading Description -->
+                <p class="text-gray-400 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
+                    Изработка на <span class="text-white font-medium">responsive сайтове в рамките на 1 седмица или по-бързо</span>, според мащаба на проекта — на изключително изгодни цени и коректни условия.
+                </p>
+                
+                <!-- CTA Action Buttons -->
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                    <a href="#portfolio" class="px-8 py-4 rounded-xl accent-gradient text-darkBg font-bold hover:opacity-90 transform hover:-translate-y-0.5 transition-all shadow-neon-md text-center w-full sm:w-auto">
+                        Виж проекти
+                    </a>
+                    <a href="#contact" class="px-8 py-4 rounded-xl glass-card border border-glassBorder font-semibold hover:border-gray-500 hover:text-white transition-all text-center w-full sm:w-auto">
+                        Заяви консултация
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Futuristic Visual Element (3D / Floating Glass UI Mockup) -->
+            <div class="lg:col-span-5 relative flex items-center justify-center lg:justify-end">
+                <div class="relative w-full max-w-[420px] aspect-square flex items-center justify-center group">
+                    <!-- Main Glow Base -->
+                    <div class="absolute inset-0 accent-gradient rounded-3xl opacity-20 blur-3xl group-hover:opacity-30 transition-opacity duration-500"></div>
+                    
+                    <!-- Code / Tech Layer Card -->
+                    <div class="absolute top-4 left-4 w-72 p-5 rounded-2xl glass-card border border-glassBorder shadow-2xl transform -rotate-6 transition-transform duration-500 hover:rotate-0 hover:z-10">
+                        <div class="flex items-center gap-1.5 mb-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                            <span class="text-[10px] text-gray-500 ml-2 font-mono">App.tsx</span>
+                        </div>
+                        <p class="font-mono text-xs text-neonBlue">&lt;<span class="text-neonPurple">PortfolioCard</span>&gt;</p>
+                        <p class="font-mono text-[11px] text-gray-400 pl-4 py-1">⚡ UI/UX Architecture</p>
+                        <p class="font-mono text-[11px] text-gray-400 pl-4">⚡ High-Fidelity Code</p>
+                        <p class="font-mono text-xs text-neonBlue">&lt;/<span class="text-neonPurple">PortfolioCard</span>&gt;</p>
+                    </div>
+
+                    <!-- Design Layer Card (Figma Look) -->
+                    <div class="absolute bottom-4 right-4 w-72 p-5 rounded-2xl glass-card border border-neonBlue/30 shadow-2xl transform rotate-6 transition-transform duration-500 hover:rotate-0 hover:z-10">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-6 h-6 rounded bg-black flex items-center justify-center text-xs font-bold text-orange-500">F</span>
+                                <span class="text-xs font-semibold text-white">Figma Prototype</span>
+                            </div>
+                            <span class="text-[10px] bg-neonBlue/20 text-neonBlue px-2 py-0.5 rounded-full font-mono font-bold">100% Active</span>
+                        </div>
+                        <div class="h-20 w-full bg-darkBg/80 rounded-lg border border-glassBorder mb-3 flex flex-col justify-around p-3">
+                            <div class="h-2 w-2/3 bg-gray-600 rounded"></div>
+                            <div class="h-2 w-full bg-gray-700 rounded"></div>
+                            <div class="h-2 w-1/2 bg-neonPurple/50 rounded"></div>
+                        </div>
+                        <div class="flex justify-between items-center text-[10px] text-gray-400">
+                            <span>Layers: 42</span>
+                            <span class="flex items-center text-neonBlue"><i data-lucide="mouse-pointer" class="w-3 h-3 mr-1"></i> UX Flow</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <hr class="border-glassBorder max-w-7xl mx-auto">
+
+    <!-- About Me Section -->
+    <section id="about" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-4">
+                <div class="relative inline-block">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Кой стои зад <br><span class="text-gradient">проектите?</span></h2>
+                    <div class="w-20 h-1 accent-gradient mt-4 rounded-full"></div>
+                </div>
+            </div>
+            <div class="lg:col-span-8 glass-card border border-glassBorder p-8 sm:p-10 rounded-3xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-5 text-white pointer-events-none">
+                    <i data-lucide="graduation-cap" class="w-40 h-40"></i>
+                </div>
+                <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-light">
+                    Завършил съм <span class="text-white font-medium">Математическата гимназия в гр. Варна</span>, а в момента завършвам <span class="text-white font-medium">Софтуерно инженерство в Софийски университет „Св. Климент Охридски“</span>, Факултет по математика и информатика. 
+                </p>
+                <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-light mt-4">
+                    Комбинирам аналитично техническо мислене, прецизно внимание към детайла и усет към модерен, изчистен UI/UX дизайн. Целта ми е да създавам дигитални решения, които са едновременно красиви, изключително бързи и реално полезни за бизнеса.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-4 mt-8 pt-6 border-t border-glassBorder/50">
+                    <div>
+                        <h4 class="text-xs text-gray-500 uppercase tracking-wider font-bold">Локация</h4>
+                        <p class="text-sm font-semibold text-white">София / Варна, България</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs text-gray-500 uppercase tracking-wider font-bold">Специализация</h4>
+                        <p class="text-sm font-semibold text-white">Full-Stack Dev & UX Prototyping</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6 bg-gradient-to-b from-transparent to-darkBg">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header Text -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Професионални дигитални <span class="text-gradient">услуги</span></h2>
+                <p class="text-gray-400 font-light">
+                    Всеки бизнес има индивидуални нужди. Предлагам гъвкави, бързи решения с изключително изгодни цени, ясни условия, професионална комуникация и стриктна коректност.
+                </p>
+            </div>
+
+            <!-- Cards Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card border border-glassBorder p-6 rounded-2xl hover:border-neonPurple/50 transform hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl bg-neonPurple/10 flex items-center justify-center text-neonPurple mb-5 group-hover:bg-neonPurple group-hover:text-darkBg transition-all">
+                        <i data-lucide="smartphone"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Изработка на Responsive сайтове</h3>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Перфектна визуализация на всяко устройство – от мобилен телефон до десктоп монитор.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-card border border-glassBorder p-6 rounded-2xl hover:border-neonBlue/50 transform hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue mb-5 group-hover:bg-neonBlue group-hover:text-darkBg transition-all">
+                        <i data-lucide="palette"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">UI/UX Дизайн</h3>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Модерни интерфейси, проектирани изцяло с мисъл за потребителското изживяване.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-card border border-glassBorder p-6 rounded-2xl hover:border-neonPurple/50 transform hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl bg-neonPurple/10 flex items-center justify-center text-neonPurple mb-5 group-hover:bg-neonPurple group-hover:text-darkBg transition-all">
+                        <i data-lucide="layers"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">High-fidelity Figma прототипи</h3>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Интерактивни работни модели преди реалния процес на програмиране.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass-card border border-glassBorder p-6 rounded-2xl hover:border-neonBlue/50 transform hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue mb-5 group-hover:bg-neonBlue group-hover:text-darkBg transition-all">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Landing Pages</h3>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Страници, оптимизирани за максимално привличане на клиенти и висока конверсия.</p>
+                </div>
+                <!-- Card 5 -->
+                <div class="glass-card border border-glassBorder p-6 rounded-2xl hover:border-neonPurple/50 transform hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl bg-neonPurple/10 flex items-center justify-center text-neonPurple mb-5 group-hover:bg-neonPurple group-hover:text-darkBg transition-all">
+                        <i data-lucide="briefcase"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Бизнес сайтове</h3>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Представителни корпоративни уебсайтове за утвърждаване на бранда на пазара.</p>
+                </div>
+                <!-- Card 6 -->
+                <div class="glass-card border border-glassBorder p-6 rounded-2xl hover:border-neonBlue/50 transform hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue mb-5 group-hover:bg-neonBlue group-hover:text-darkBg transition-all">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Портфолио сайтове</h3>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Индивидуално представяне за артисти, фрийлансъри, лекари и инженери.</p>
+                </div>
+                <!-- Card 7 -->
+                <div class="glass-card border border-glassBorder p-6 rounded-2xl hover:border-neonPurple/50 transform hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl bg-neonPurple/10 flex items-center justify-center text-neonPurple mb-5 group-hover:bg-neonPurple group-hover:text-darkBg transition-all">
+                        <i data-lucide="layout"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Мобилни UI концепции</h3>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Свежи интерфейсни структури, съобразени с актуалните изисквания на App Store & Google Play.</p>
+                </div>
+                <!-- Card 8 -->
+                <div class="glass-card border border-glassBorder p-6 rounded-2xl hover:border-neonBlue/50 transform hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue mb-5 group-hover:bg-neonBlue group-hover:text-darkBg transition-all">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Подобряване на сайтове</h3>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Редизайн, ускоряване на кода и отстраняване на UX грешки в текущи платформи.</p>
+                </div>
+            </div>
+
+            <!-- Quick Highlight Banner -->
+            <div class="mt-12 p-6 sm:p-8 rounded-2xl glass-card border border-glassBorder text-center max-w-4xl mx-auto relative overflow-hidden">
+                <span class="absolute top-0 left-0 w-full h-[2px] accent-gradient"></span>
+                <p class="text-white text-base sm:text-lg font-medium">
+                    ⚡ <span class="text-neonBlue">Бързина без компромис:</span> Изработка до 1 седмица при по-малки проекти. Срокът и цената винаги съответстват на сложността, с фокус върху индивидуален подход.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- High-Fidelity Figma Showcase Section -->
+    <section id="figma-preview" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Context Info -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card border border-glassBorder text-xs text-neonPurple font-semibold uppercase tracking-wider">
+                    Figma Интеграция
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    High-fidelity прототипи преди <span class="text-gradient">разработката</span>
+                </h2>
+                <p class="text-gray-400 font-light leading-relaxed">
+                    Преди реалната разработка и писане на код може да бъде изготвен интерактивен high-fidelity прототип във Figma. Така виждате предварително как ще изглежда сайтът, какви функционалности ще има и дали решението отговаря на нуждите, представите и целите на конкретния бизнес.
+                </p>
+                <div class="pt-2">
+                    <a href="https://figma.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-neonBlue transition-colors group">
+                        Отвори официална Figma <i data-lucide="arrow-up-right" class="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Widgets & Live Embed Area -->
+            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-12 gap-6">
+                <!-- Embed Widget Placeholder (Simulating Figma Live Frame) -->
+                <div class="sm:col-span-8 glass-card border border-glassBorder rounded-2xl overflow-hidden p-3 flex flex-col h-[340px]">
+                    <div class="flex items-center justify-between px-2 pb-2 border-b border-glassBorder/40 mb-3 text-xs text-gray-400 font-mono">
+                        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-green-500"></span> Live Interactive Preview</span>
+                        <span>v2.1.0</span>
+                    </div>
+                    <!-- Mocking embedded container seamlessly -->
+                    <div class="w-full flex-1 rounded-xl bg-darkBg/90 border border-glassBorder relative flex flex-col items-center justify-center p-4 text-center group">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-20 filter grayscale group-hover:opacity-30 transition-opacity" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop');"></div>
+                        <div class="relative space-y-3 z-10">
+                            <div class="w-12 h-12 mx-auto rounded-full bg-neonPurple/20 flex items-center justify-center text-neonPurple">
+                                <i data-lucide="eye" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-sm font-bold text-white">Интерактивен Ембед Модел</h4>
+                            <p class="text-xs text-gray-400 max-w-xs mx-auto">Тук се вгражда реалният Figma код за разглеждане на десктоп и мобилни версии.</p>
+                            <a href="https://figma.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-4 py-2 rounded-lg accent-gradient text-darkBg font-bold text-xs hover:opacity-90 transition-opacity">
+                                Виж във Figma
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Prototype Display View -->
+                <div class="sm:col-span-4 glass-card border border-glassBorder rounded-2xl p-4 flex flex-col items-center justify-between text-center h-[340px] group hover:border-neonBlue/40 transition-colors">
+                    <div class="w-full aspect-[9/16] max-h-[190px] bg-darkBg border-4 border-gray-800 rounded-2xl relative overflow-hidden p-2 flex flex-col justify-between">
+                        <div class="w-12 h-3 bg-gray-800 rounded-full mx-auto mb-1"></div>
+                        <div class="flex-1 flex flex-col justify-center items-center gap-2">
+                            <span class="w-8 h-8 rounded-full accent-gradient opacity-80"></span>
+                            <div class="w-12 h-1.5 bg-gray-700 rounded mx-auto"></div>
+                            <div class="w-16 h-1 bg-gray-800 rounded mx-auto"></div>
+                        </div>
+                        <div class="w-8 h-1 bg-gray-700 rounded mx-auto"></div>
+                    </div>
+                    <div class="space-y-1 mt-2">
+                        <h4 class="text-xs font-bold text-white">Mobile UI Mockup</h4>
+                        <p class="text-[11px] text-gray-400">Тестване директно от мобилен екран.</p>
+                    </div>
+                    <a href="https://figma.com" target="_blank" rel="noopener noreferrer" class="w-full text-center text-[11px] font-bold text-neonBlue hover:underline flex items-center justify-center gap-1">
+                        Преглед в нов таб <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Portfolio / Projects Grid Section -->
+    <section id="portfolio" class="py-24 px-6 bg-darkBg">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Селектирани <span class="text-gradient">проекти</span></h2>
+                    <p class="text-gray-400 font-light mt-2 max-w-xl">Реални примери за чист код, бързодействие и модерен архитектурен дизайн.</p>
+                </div>
+                <div class="flex items-center gap-2 border border-glassBorder glass-card px-4 py-2 rounded-xl text-xs text-gray-400 font-mono">
+                    <span>Подредба по: Специфика</span>
+                </div>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="glass-card border border-glassBorder rounded-3xl overflow-hidden group hover:border-neonBlue/40 transition-all duration-300 flex flex-col h-full">
+                    <!-- Image Area -->
+                    <div class="h-48 w-full bg-gray-900 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop" alt="Project 1 preview" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <span class="absolute top-3 right-3 text-[10px] bg-darkBg/80 border border-glassBorder text-neonBlue px-2.5 py-1 rounded-full font-bold">Live</span>
+                    </div>
+                    <!-- Info Content -->
+                    <div class="p-6 flex flex-col flex-1 justify-between space-y-4">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-white group-hover:text-neonBlue transition-colors">Nexus E-Commerce Platform</h3>
+                            <p class="text-xs text-gray-400 font-light leading-relaxed">Responsive корпоративен магазин с фокус върху бързо зареждане и опростен checkout процес.</p>
+                        </div>
+                        <!-- Tech stack badges -->
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span class="text-[10px] bg-glassBorder text-gray-300 px-2 py-0.5 rounded-md font-mono">Next.js</span>
+                            <span class="text-[10px] bg-glassBorder text-gray-300 px-2 py-0.5 rounded-md font-mono">Tailwind</span>
+                            <span class="text-[10px] bg-glassBorder text-gray-300 px-2 py-0.5 rounded-md font-mono">Figma</span>
+                        </div>
+                        <!-- Actions buttons row -->
+                        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-glassBorder/40 text-center text-xs font-semibold">
+                            <a href="#contact" class="py-2.5 rounded-lg border border-glassBorder text-white hover:border-gray-400 transition-colors">Виж проекта</a>
+                            <a href="https://figma.com" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-lg bg-neonPurple/20 text-neonPurple hover:bg-neonPurple hover:text-darkBg transition-all flex items-center justify-center gap-1">Figma <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card border border-glassBorder rounded-3xl overflow-hidden group hover:border-neonPurple/40 transition-all duration-300 flex flex-col h-full">
+                    <!-- Image Area -->
+                    <div class="h-48 w-full bg-gray-900 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop" alt="Project 2 preview" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <span class="absolute top-3 right-3 text-[10px] bg-darkBg/80 border border-glassBorder text-neonPurple px-2.5 py-1 rounded-full font-bold">UX Prototype</span>
+                    </div>
+                    <!-- Info Content -->
+                    <div class="p-6 flex flex-col flex-1 justify-between space-y-4">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-white group-hover:text-neonPurple transition-colors">AeroSpace Analytics Panel</h3>
+                            <p class="text-xs text-gray-400 font-light leading-relaxed">Сложен табло интерфейс за проследяване на реални данни с филтри и тъмен софтуерен облик.</p>
+                        </div>
+                        <!-- Tech stack badges -->
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span class="text-[10px] bg-glassBorder text-gray-300 px-2 py-0.5 rounded-md font-mono">React</span>
+                            <span class="text-[10px] bg-glassBorder text-gray-300 px-2 py-0.5 rounded-md font-mono">Chart.js</span>
+                            <span class="text-[10px] bg-glassBorder text-gray-300 px-2 py-0.5 rounded-md font-mono">UI Design</span>
+                        </div>
+                        <!-- Actions buttons row -->
+                        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-glassBorder/40 text-center text-xs font-semibold">
+                            <a href="#contact" class="py-2.5 rounded-lg border border-glassBorder text-white hover:border-gray-400 transition-colors">Виж проекта</a>
+                            <a href="https://figma.com" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-lg bg-neonBlue/20 text-neonBlue hover:bg-neonBlue hover:text-darkBg transition-all flex items-center justify-center gap-1">Прототип <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card border border-glassBorder rounded-3xl overflow-hidden group hover:border-neonBlue/40 transition-all duration-300 flex flex-col h-full">
+                    <!-- Image Area -->
+                    <div class="h-48 w-full bg-gray-900 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop" alt="Project 3 preview" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <span class="absolute top-3 right-3 text-[10px] bg-darkBg/80 border border-glassBorder text-neonBlue px-2.5 py-1 rounded-full font-bold">Landing Page</span>
+                    </div>
+                    <!-- Info Content -->
+                    <div class="p-6 flex flex-col flex-1 justify-between space-y-4">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-white group-hover:text-neonBlue transition-colors">CryptoSaaS Landing Page</h3>
+                            <p class="text-xs text-gray-400 font-light leading-relaxed">Минималистичен бизнес сайт с 3D floating елементи, изграден за по-малко от 4 дни.</p>
+                        </div>
+                        <!-- Tech stack badges -->
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span class="text-[10px] bg-glassBorder text-gray-300 px-2 py-0.5 rounded-md font-mono">HTML/CSS</span>
+                            <span class="text-[10px] bg-glassBorder text-gray-300 px-2 py-0.5 rounded-md font-mono">Tailwind</span>
+                            <span class="text-[10px] bg-glassBorder text-gray-300 px-2 py-0.5 rounded-md font-mono">JS Smooth</span>
+                        </div>
+                        <!-- Actions buttons row -->
+                        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-glassBorder/40 text-center text-xs font-semibold">
+                            <a href="#contact" class="py-2.5 rounded-lg border border-glassBorder text-white hover:border-gray-400 transition-colors">Виж проекта</a>
+                            <a href="https://figma.com" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-lg bg-neonPurple/20 text-neonPurple hover:bg-neonPurple hover:text-darkBg transition-all flex items-center justify-center gap-1">Figma <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Process Step-by-Step Section -->
+    <section id="process" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Пътят до успешния <span class="text-gradient">резултат</span></h2>
+            <p class="text-gray-400 font-light text-sm">Процесът е изцяло прозрачен, стъпка по стъпка, без излишно забавяне.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
+            <!-- Step 1 -->
+            <div class="glass-card border border-glassBorder p-6 rounded-2xl relative space-y-3">
+                <span class="absolute top-4 right-4 font-mono font-black text-2xl text-neonBlue/20">01</span>
+                <h3 class="text-base font-bold text-white flex items-center gap-2"><i data-lucide="coffee" class="w-4 h-4 text-neonBlue"></i> Консултация</h3>
+                <p class="text-xs text-gray-400 font-light leading-relaxed">Първоначален разговор и дълбоко разбиране на целите на вашия личен бранд или бизнес модел.</p>
+            </div>
+            <!-- Step 2 -->
+            <div class="glass-card border border-glassBorder p-6 rounded-2xl relative space-y-3">
+                <span class="absolute top-4 right-4 font-mono font-black text-2xl text-neonPurple/20">02</span>
+                <h3 class="text-base font-bold text-white flex items-center gap-2"><i data-lucide="bar-chart-2" class="w-4 h-4 text-neonPurple"></i> Анализ</h3>
+                <p class="text-xs text-gray-400 font-light leading-relaxed">Детайлно дефиниране на необходимите функционалности, структура на страниците и стилистика.</p>
+            </div>
+            <!-- Step 3 -->
+            <div class="glass-card border border-glassBorder p-6 rounded-2xl relative space-y-3">
+                <span class="absolute top-4 right-4 font-mono font-black text-2xl text-neonBlue/20">03</span>
+                <h3 class="text-base font-bold text-white flex items-center gap-2"><i data-lucide="figma" class="w-4 h-4 text-neonBlue"></i> Прототип във Figma</h3>
+                <p class="text-xs text-gray-400 font-light leading-relaxed">Изготвяне на интерактивен high-fidelity макет за визуален преглед преди реалния код.</p>
+            </div>
+            <!-- Step 4 -->
+            <div class="glass-card border border-glassBorder p-6 rounded-2xl relative space-y-3">
+                <span class="absolute top-4 right-4 font-mono font-black text-2xl text-neonPurple/20">04</span>
+                <h3 class="text-base font-bold text-white flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-neonPurple"></i> Одобрение & Корекции</h3>
+                <p class="text-xs text-gray-400 font-light leading-relaxed">Фини настройки спрямо обратната връзка, докато концепцията пасне идеално на изискванията.</p>
+            </div>
+            <!-- Step 5 -->
+            <div class="glass-card border border-glassBorder p-6 rounded-2xl relative space-y-3">
+                <span class="absolute top-4 right-4 font-mono font-black text-2xl text-neonBlue/20">05</span>
+                <h3 class="text-base font-bold text-white flex items-center gap-2"><i data-lucide="code" class="w-4 h-4 text-neonBlue"></i> Кодене на Responsive Сайт</h3>
+                <p class="text-xs text-gray-400 font-light leading-relaxed">Чиста и подредена софтуерна разработка с бърз код, оптимизиран за търсачки и мобилни екрани.</p>
+            </div>
+            <!-- Step 6 -->
+            <div class="glass-card border border-glassBorder p-6 rounded-2xl relative space-y-3">
+                <span class="absolute top-4 right-4 font-mono font-black text-2xl text-neonPurple/20">06</span>
+                <h3 class="text-base font-bold text-white flex items-center gap-2"><i data-lucide="rocket" class="w-4 h-4 text-neonPurple"></i> Предаване & Съдействие</h3>
+                <p class="text-xs text-gray-400 font-light leading-relaxed">Качване на сървър (deployment) и пълно техническо съдействие по стартирането на сайта.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Strategic Advantages Grid Section -->
+    <section class="py-24 px-6 bg-gradient-to-t from-transparent to-darkBg">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-center mb-16">Защо да работим <span class="text-gradient">заедно?</span></h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="flex items-start gap-4 p-4 glass-card border border-glassBorder/40 rounded-xl">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-neonBlue shrink-0 mt-1"></i>
+                    <div><h4 class="text-sm font-bold text-white">Индивидуален дизайн</h4><p class="text-xs text-gray-400 font-light">Без готови шаблонни структури.</p></div>
+                </div>
+                <div class="flex items-start gap-4 p-4 glass-card border border-glassBorder/40 rounded-xl">
+                    <i data-lucide="monitor" class="w-5 h-5 text-neonPurple shrink-0 mt-1"></i>
+                    <div><h4 class="text-sm font-bold text-white">Пълен Responsive</h4><p class="text-xs text-gray-400 font-light">Идеално на десктоп, таблет и телефон.</p></div>
+                </div>
+                <div class="flex items-start gap-4 p-4 glass-card border border-glassBorder/40 rounded-xl">
+                    <i data-lucide="gauge" class="w-5 h-5 text-neonBlue shrink-0 mt-1"></i>
+                    <div><h4 class="text-sm font-bold text-white">Бърза изработка</h4><p class="text-xs text-gray-400 font-light">Дори в рамките на 1 седмица.</p></div>
+                </div>
+                <div class="flex items-start gap-4 p-4 glass-card border border-glassBorder/40 rounded-xl">
+                    <i data-lucide="credit-card" class="w-5 h-5 text-neonPurple shrink-0 mt-1"></i>
+                    <div><h4 class="text-sm font-bold text-white">Изгодни цени</h4><p class="text-xs text-gray-400 font-light">Максимално съотношение качество-цена.</p></div>
+                </div>
+                <div class="flex items-start gap-4 p-4 glass-card border border-glassBorder/40 rounded-xl">
+                    <i data-lucide="messages-square" class="w-5 h-5 text-neonBlue shrink-0 mt-1"></i>
+                    <div><h4 class="text-sm font-bold text-white">Професионална комуникация</h4><p class="text-xs text-gray-400 font-light">Ясна и бърза връзка по време на проекта.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-4 glass-card border border-glassBorder/40 rounded-xl">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-neonPurple shrink-0 mt-1"></i>
+                    <div><h4 class="text-sm font-bold text-white">Коректност и прозрачност</h4><p class="text-xs text-gray-400 font-light">Ясни условия от самото начало.</p></div>
+                </div>
+                <div class="flex items-start gap-4 p-4 glass-card border border-glassBorder/40 rounded-xl">
+                    <i data-lucide="mouse-pointer-click" class="w-5 h-5 text-neonBlue shrink-0 mt-1"></i>
+                    <div><h4 class="text-sm font-bold text-white">Модерен UI/UX подход</h4><p class="text-xs text-gray-400 font-light">Спрямо най-новите тенденции в уеб.</p></div>
+                </div>
+                <div class="flex items-start gap-4 p-4 glass-card border border-glassBorder/40 rounded-xl">
+                    <i data-lucide="terminal" class="w-5 h-5 text-neonPurple shrink-0 mt-1"></i>
+                    <div><h4 class="text-sm font-bold text-white">Чист и подреден код</h4><p class="text-xs text-gray-400 font-light">Лесен за поддръжка и надграждане.</p></div>
+                </div>
+                <div class="flex items-start gap-4 p-4 glass-card border border-glassBorder/40 rounded-xl">
+                    <i data-lucide="heart" class="w-5 h-5 text-neonBlue shrink-0 mt-1"></i>
+                    <div><h4 class="text-sm font-bold text-white">Фокус върху нуждите ви</h4><p class="text-xs text-gray-400 font-light">Решения, които носят стойност за бизнеса.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Stack Badges Section -->
+    <section class="py-16 px-6 max-w-7xl mx-auto border-t border-b border-glassBorder/30">
+        <div class="text-center space-y-2 mb-10">
+            <h3 class="text-xs uppercase font-mono tracking-widest text-gray-500">Инструменти & Технологична Екосистема</h3>
+            <p class="text-sm text-gray-400">Технологии, осигуряващи перфектно преоразмеряване, анимации и лека софтуерна структура.</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-3 max-w-4xl mx-auto">
+            <span class="px-4 py-2 rounded-xl glass-card border border-glassBorder text-xs text-white font-medium hover:border-orange-500/40 transition-colors">HTML5</span>
+            <span class="px-4 py-2 rounded-xl glass-card border border-glassBorder text-xs text-white font-medium hover:border-blue-500/40 transition-colors">CSS3</span>
+            <span class="px-4 py-2 rounded-xl glass-card border border-glassBorder text-xs text-white font-medium hover:border-yellow-500/40 transition-colors">JavaScript</span>
+            <span class="px-4 py-2 rounded-xl glass-card border border-glassBorder text-xs text-white font-medium hover:border-cyan-400/40 transition-colors">React</span>
+            <span class="px-4 py-2 rounded-xl glass-card border border-glassBorder text-xs text-white font-medium hover:border-white/40 transition-colors">Next.js</span>
+            <span class="px-4 py-2 rounded-xl glass-card border border-glassBorder text-xs text-white font-medium hover:border-teal-400/40 transition-colors">Tailwind CSS</span>
+            <span class="px-4 py-2 rounded-xl glass-card border border-glassBorder text-xs text-white font-medium hover:border-purple-500/40 transition-colors">Bootstrap</span>
+            <span class="px-4 py-2 rounded-xl glass-card border border-glassBorder text-xs text-white font-medium hover:border-pink-500/40 transition-colors">Figma</span>
+            <span class="px-4 py-2 rounded-xl glass-card border border-glassBorder text-xs text-white font-medium hover:border-red-500/40 transition-colors">Git / GitHub</span>
+            <span class="px-4 py-2 rounded-xl glass-card border border-neonBlue/30 text-xs text-neonBlue font-semibold">Responsive Design</span>
+            <span class="px-4 py-2 rounded-xl glass-card border border-neonPurple/30 text-xs text-neonPurple font-semibold">UI/UX Strategy</span>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <!-- Context left side -->
+            <div class="lg:col-span-5 flex flex-col justify-between space-y-8">
+                <div class="space-y-4">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Да създадем нещо <br><span class="text-gradient">изключително</span></h2>
+                    <p class="text-gray-400 font-light leading-relaxed">
+                        Попълни формата със спецификата на проекта ти, очакван бюджет и срокове. Ще се свържа с теб за безплатна първоначална консултация в рамките на 24 часа.
+                    </p>
+                </div>
+
+                <!-- Alternative Direct Social Channels Buttons Layout -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-gray-500">Директни канали</h4>
+                    <div class="grid grid-cols-2 gap-3 text-xs font-semibold text-white">
+                        <a href="mailto:example@fmi.uni-sofia.bg" class="p-3 rounded-xl glass-card border border-glassBorder hover:border-neonBlue/50 flex items-center gap-2 transition-colors">
+                            <i data-lucide="mail" class="w-4 h-4 text-neonBlue"></i> Имейл
+                        </a>
+                        <a href="tel:+359888888888" class="p-3 rounded-xl glass-card border border-glassBorder hover:border-neonPurple/50 flex items-center gap-2 transition-colors">
+                            <i data-lucide="phone" class="w-4 h-4 text-neonPurple"></i> Телефон
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl glass-card border border-glassBorder hover:border-neonBlue/50 flex items-center gap-2 transition-colors">
+                            <i data-lucide="linkedin" class="w-4 h-4 text-neonBlue"></i> LinkedIn
+                        </a>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl glass-card border border-glassBorder hover:border-neonPurple/50 flex items-center gap-2 transition-colors">
+                            <i data-lucide="github" class="w-4 h-4 text-neonPurple"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Form Input -->
+            <div class="lg:col-span-7 glass-card border border-glassBorder p-6 sm:p-10 rounded-3xl">
+                <form onsubmit="handleFormSubmit(event)" class="space-y-5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label for="name" class="text-xs font-medium text-gray-400">Име / Бизнес организация</label>
+                            <input type="text" id="name" required placeholder="Иван Иванов" class="w-full bg-darkBg/60 border border-glassBorder rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-neonBlue transition-colors">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label for="email" class="text-xs font-medium text-gray-400">Имейл адрес</label>
+                            <input type="email" id="email" required placeholder="ivan@example.com" class="w-full bg-darkBg/60 border border-glassBorder rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-neonBlue transition-colors">
+                        </div>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label for="project-type" class="text-xs font-medium text-gray-400">Тип на дигиталния проект</label>
+                        <select id="project-type" class="w-full bg-darkBg/60 border border-glassBorder rounded-xl px-4 py-3 text-sm text-gray-300 focus:outline-none focus:border-neonPurple transition-colors">
+                            <option value="landing">Landing Page (Целева страница)</option>
+                            <option value="business">Представителен Бизнес сайт</option>
+                            <option value="portfolio">Лично Портфолио</option>
+                            <option value="figma-only">Само UI/UX Figma Прототип</option>
+                            <option value="redesign">Редизайн / Оптимизация на съществуващ сайт</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label for="budget" class="text-xs font-medium text-gray-400">Примерен Бюджет (BGN)</label>
+                            <input type="text" id="budget" placeholder="По договаряне / Специфичен" class="w-full bg-darkBg/60 border border-glassBorder rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-neonBlue transition-colors">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label for="deadline" class="text-xs font-medium text-gray-400">Желан срок за изпълнение</label>
+                            <input type="text" id="deadline" placeholder="напр. до 1 седмица / Гъвкав" class="w-full bg-darkBg/60 border border-glassBorder rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-neonBlue transition-colors">
+                        </div>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label for="message" class="text-xs font-medium text-gray-400">Описание на изискванията и целите</label>
+                        <textarea id="message" rows="4" placeholder="Разкажете накратко за проекта и какви функционалности очаквате..." class="w-full bg-darkBg/60 border border-glassBorder rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-neonPurple transition-colors resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl accent-gradient text-darkBg font-bold hover:opacity-90 transition-opacity text-sm shadow-neon-md flex items-center justify-center gap-2">
+                        Изпрати запитване <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer Area -->
+    <footer class="border-t border-glassBorder/30 bg-[#06070a] py-8 px-6 text-xs text-gray-500 text-center">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 UI/UX & Software Portfolio. Всички права запазени.</p>
+            <p class="flex items-center gap-1 font-light">Проектирано и кодирано с <span class="text-red-500">&hearts;</span> от FMI Студент.</p>
+        </div>
+    </footer>
+
+    <!-- Core Interactions Logic Script -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Burger Menu Toggle Trigger
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            const isHidden = mobileMenu.classList.contains('hidden');
+            menuBtn.innerHTML = isHidden ? '<i data-lucide="menu" class="w-6 h-6"></i>' : '<i data-lucide="x" class="w-6 h-6"></i>';
+            lucide.createIcons();
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Sticky Header Backdrop Blur Opacity Shift on Scroll
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                header.classList.remove('bg-darkBg/60');
+                header.classList.add('bg-darkBg/90', 'border-glassBorder', 'shadow-lg');
+            } else {
+                header.classList.remove('bg-darkBg/90', 'border-glassBorder', 'shadow-lg');
+                header.classList.add('bg-darkBg/60');
+            }
+        });
+
+        // Simple Form Submission Interceptor Mock
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('Благодарим ви! Запитването ви е получено успешно. Ще се свържем с вас в най-кратък срок.');
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
